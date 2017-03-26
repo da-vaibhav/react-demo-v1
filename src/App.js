@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import ChildComponent from './childComponent';
 
 class App extends Component {
   constructor(){
@@ -20,8 +21,8 @@ class App extends Component {
 
     return (
       <div className="App">
-        <input type="text" onChange={this.txtChange.bind(this)}/>
         <h3>This is { textValue }</h3>
+        <ChildComponent onChangeCallback={this.txtChange.bind(this)} />
       </div>
     );
   }
