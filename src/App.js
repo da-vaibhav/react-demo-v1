@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { requestUsersLocation } from './utils';
+import { requestUsersLocation, fetchGeoData } from './utils';
 
 class App extends Component {
   constructor(){
@@ -29,7 +29,11 @@ class App extends Component {
           lon: location_data.lon
         }
       });
-    });
+      return { latitude: location_data.lat,
+               longitude: location_data.lon
+            };
+    })
+    .then(fetchGeoData);
   }
 
   render() {
@@ -46,7 +50,7 @@ class App extends Component {
         <h3>
           Your location is
           { this.state.location_available
-            ? (`Lat:${this.state.location_data.lat} Lon:${this.state.location_data.lon}`)
+            ? (` Lat:${this.state.location_data.lat} Lon:${this.state.location_data.lon}`)
             : not_available_str }
         </h3>
 
