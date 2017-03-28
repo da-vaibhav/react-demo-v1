@@ -3,12 +3,12 @@ import React from 'react'
 const CurrentCity = (props) => {
   return (
     <div>
-      Your city name 
+      Your city name
       {
           props.cityData
-        ? `: ${props.cityData.city.name}`
-        : ' 🤔'
-      }
+          ? `: ${props.cityData.city.name}`
+          : ' 🤔'
+      }  
     </div>
   )
 }
