@@ -16,6 +16,7 @@ class App extends Component {
     };
 
     this.forSubmit = this.forSubmit.bind(this);
+    this.renderData = this.renderData.bind(this);
   }
 
   forSubmit(event){
@@ -33,7 +34,12 @@ class App extends Component {
                longitude: location_data.lon
             };
     })
-    .then(fetchGeoData);
+    .then(fetchGeoData)
+    .then(this.renderData);
+  }
+
+  renderData(data){
+    console.log('renderData ', data);
   }
 
   render() {
