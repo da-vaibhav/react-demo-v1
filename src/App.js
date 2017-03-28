@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { requestUsersLocation, fetchGeoData } from './utils';
+import WeatherData from './WeatherData';
 
 class App extends Component {
   constructor(){
@@ -12,11 +13,11 @@ class App extends Component {
       location_data: {
         lat: null,
         long: null
-      }
+      },
+      response_data: null
     };
 
     this.forSubmit = this.forSubmit.bind(this);
-    this.renderData = this.renderData.bind(this);
   }
 
   forSubmit(event){
@@ -35,11 +36,11 @@ class App extends Component {
             };
     })
     .then(fetchGeoData)
-    .then(this.renderData);
-  }
-
-  renderData(data){
-    console.log('renderData ', data);
+    .then((data) => {
+      this.setState({
+        response_data: data
+      })
+    });
   }
 
   render() {
@@ -63,6 +64,9 @@ class App extends Component {
         <h3>
           Search result {this.state.data_available ? available_str : not_available_str }
         </h3>
+        <div>
+          <WeatherData data={this.state.response_data} />
+        </div>
       </div>
 
     );
