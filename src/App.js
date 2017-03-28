@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { requestUsersLocation, fetchGeoData } from './utils';
 import WeatherData from './WeatherData';
+import CurrentCity from './CurrentCity';
 
 class App extends Component {
   constructor(){
@@ -38,6 +39,7 @@ class App extends Component {
     .then(fetchGeoData)
     .then((data) => {
       this.setState({
+        data_available: true,
         response_data: data
       })
     });
@@ -64,9 +66,10 @@ class App extends Component {
         <h3>
           Search result {this.state.data_available ? available_str : not_available_str }
         </h3>
-        <div>
-          <WeatherData data={this.state.response_data} />
-        </div>
+
+        <CurrentCity cityData={this.state.response_data}/>
+
+        <WeatherData data={this.state.response_data} />
       </div>
 
     );
